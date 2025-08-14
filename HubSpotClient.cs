@@ -6,12 +6,16 @@ namespace HubSpot.NET
 {
     public class HubSpotClient
     {
+        private static readonly Uri _defaultBaseUri = new("https://api.hubapi.com");
+
         private readonly BaseClient _client;
 
         public HubSpotClient(HttpClient httpClient, HubSpotClientOptions clientOptions)
         {
-            _client = new(httpClient);
+            httpClient.BaseAddress ??= _defaultBaseUri;
             httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {clientOptions.AccessToken}");
+
+            _client = new(httpClient);
         }
 
         [ActivatorUtilitiesConstructor]
