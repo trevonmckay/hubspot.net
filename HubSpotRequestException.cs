@@ -26,7 +26,7 @@ namespace HubSpot.NET
         {
             if (hubSpotErrorResponse is not null)
             {
-                return $"HubSpot API error: {hubSpotErrorResponse.Message} (Status: {hubSpotErrorResponse.Status}, Error Code: {hubSpotErrorResponse.Code})";
+                return $"HubSpot API error: {hubSpotErrorResponse.Message} (Status: {hubSpotErrorResponse.Status}, Category: {hubSpotErrorResponse.Category})";
             }
 
             return $"HubSpot API request failed with status code {(int)response.StatusCode} ({response.ReasonPhrase}).";
