@@ -1,6 +1,6 @@
 ﻿using HubSpot.NET.Models;
 
-namespace HubSpot.NET.Requests.Contacts
+namespace HubSpot.NET.Requests
 {
     public class ContactRequestBuilder : BaseRequestBuilder
     {

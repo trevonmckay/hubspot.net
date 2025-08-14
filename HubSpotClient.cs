@@ -1,4 +1,4 @@
-﻿using HubSpot.NET.Requests.Contacts;
+﻿using HubSpot.NET.Requests;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
@@ -26,6 +26,8 @@ namespace HubSpot.NET
             : this(BuildHttpClient(clientOptions, httpMessageHandler), clientOptions) { }
 
         public ContactsCollectionRequestBuilder Contacts => new("/crm/v3/objects/contacts", _client);
+
+        public PropertiesCollectionRequestBuilder Properties => new("/crm/v3/properties", _client);
 
         private static HttpClient BuildHttpClient(HubSpotClientOptions clientOptions, HttpMessageHandler? httpPipeline = null)
         {

@@ -1,4 +1,4 @@
-﻿namespace HubSpot.NET.Requests.Contacts
+﻿namespace HubSpot.NET.Requests
 {
     using HubSpot.NET.Models;
 
@@ -17,13 +17,13 @@
 
         public async Task<Contact> CreateAsync(CreateContactRequest createRequest, CancellationToken cancellationToken = default)
         {
-            string requestUrl = this.BaseUrl;
+            string requestUrl = BaseUrl;
             return await Client.PostJsonAsync<Contact>(requestUrl, createRequest, cancellationToken);
         }
 
         public async Task<SearchResult<Contact>> SearchAsync(SearchContactsRequest searchRequest, CancellationToken cancellationToken = default)
         {
-            string requestUrl = this.AppendUrlSegment("search");
+            string requestUrl = AppendUrlSegment("search");
             return await Client.PostJsonAsync<SearchResult<Contact>>(requestUrl, searchRequest, cancellationToken);
         }
     }
