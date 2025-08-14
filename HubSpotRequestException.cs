@@ -5,14 +5,22 @@ namespace HubSpot.NET
 {
     public sealed class HubSpotRequestException : Exception
     {
+        private readonly HubSpotErrorResponse? _errorResponse;
+
         public HubSpotRequestException(HttpResponseMessage response, HubSpotErrorResponse? hubSpotErrorResponse, Exception? innerException = null)
             : base(CreateExceptionMessage(response, hubSpotErrorResponse), innerException)
         {
             Response = response;
-            Error = hubSpotErrorResponse;
+            _errorResponse = hubSpotErrorResponse;
         }
 
-        public HubSpotErrorResponse? Error { get; }
+        public string? Category => _errorResponse?.Category;
+
+        public string? CorrelationId => _errorResponse?.CorrelationId;
+
+        public IReadOnlyCollection<HubSpotError> Errors => (_errorResponse?.Errors ?? []).ToList().AsReadOnly();
+
+        public string? Status => _errorResponse?.Status;
 
         public HttpResponseMessage Response { get; }
 
@@ -24,6 +32,11 @@ namespace HubSpot.NET
 
         private static string CreateExceptionMessage(HttpResponseMessage response, HubSpotErrorResponse? hubSpotErrorResponse)
         {
+            if (!string.IsNullOrWhiteSpace(hubSpotErrorResponse?.Message))
+            {
+                return hubSpotErrorResponse.Message;
+            }
+
             if (hubSpotErrorResponse is not null)
             {
                 return $"HubSpot API error: {hubSpotErrorResponse.Message} (Status: {hubSpotErrorResponse.Status}, Category: {hubSpotErrorResponse.Category})";
