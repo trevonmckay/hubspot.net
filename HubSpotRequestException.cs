@@ -6,7 +6,7 @@ namespace HubSpot.NET
     public sealed class HubSpotRequestException : Exception
     {
         public HubSpotRequestException(HttpResponseMessage response, HubSpotErrorResponse? hubSpotErrorResponse, Exception? innerException = null)
-            : base($"The HubSpot API request failed with status code {(int)response.StatusCode} ({response.ReasonPhrase}).", innerException)
+            : base(CreateExceptionMessage(response, hubSpotErrorResponse), innerException)
         {
             Response = response;
             Error = hubSpotErrorResponse;
@@ -20,6 +20,16 @@ namespace HubSpot.NET
         {
             var errorResponse = await response.Content.ReadFromJsonAsync<HubSpotErrorResponse>(JsonSerializerOptions.Web);
             return new HubSpotRequestException(response, errorResponse, innerException);
+        }
+
+        private static string CreateExceptionMessage(HttpResponseMessage response, HubSpotErrorResponse? hubSpotErrorResponse)
+        {
+            if (hubSpotErrorResponse is not null)
+            {
+                return $"HubSpot API error: {hubSpotErrorResponse.Message} (Status: {hubSpotErrorResponse.Status}, Error Code: {hubSpotErrorResponse.Code})";
+            }
+
+            return $"HubSpot API request failed with status code {(int)response.StatusCode} ({response.ReasonPhrase}).";
         }
     }
 }
