@@ -1,7 +1,10 @@
-﻿namespace HubSpot.NET
+﻿using System.Text.Json.Serialization;
+
+namespace HubSpot.NET
 {
     public sealed class HubSpotErrorResponse
     {
+        [JsonConstructor]
         public HubSpotErrorResponse(string? status, string? message, string? code, IDictionary<string, object>? context = null)
         {
             Status = status;
