@@ -18,9 +18,15 @@ namespace HubSpot.NET
             _httpClient = httpClient;
         }
 
-        public Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken = default)
+        public async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken = default)
         {
-            return _httpClient.SendAsync(request, cancellationToken);
+            HttpResponseMessage response = await _httpClient.SendAsync(request, cancellationToken);
+            if (!response.IsSuccessStatusCode)
+            {
+                throw await HubSpotRequestException.CreateAsync(response);
+            }
+
+            return response;
         }
 
         public async Task<T> PostJsonAsync<T>(string requestUrl, object serializableObject, CancellationToken cancellationToken = default)
