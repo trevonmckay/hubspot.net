@@ -7,9 +7,9 @@ namespace HubSpot.NET.Requests
         public ContactRequestBuilder(string baseUrl, BaseClient client)
             : base(baseUrl, client) { }
 
-        public Task<Contact> GetAsync()
+        public Task<Contact> GetAsync(CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            return Client.GetAsync<Contact>(BaseUrl, cancellationToken);
         }
     }
 }

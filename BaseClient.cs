@@ -29,6 +29,14 @@ namespace HubSpot.NET
             return response;
         }
 
+        public async Task<T> GetAsync<T>(string requestUrl, CancellationToken cancellationToken = default)
+        {
+            HttpRequestMessage request = new(HttpMethod.Get, requestUrl);
+
+            var response = await SendAsync(request, cancellationToken);
+            return await DeserializeResponse<T>(response);
+        }
+
         public async Task<T> PostJsonAsync<T>(string requestUrl, object serializableObject, CancellationToken cancellationToken = default)
         {
             HttpRequestMessage request = new(HttpMethod.Post, requestUrl)
