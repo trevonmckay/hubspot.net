@@ -11,5 +11,10 @@ namespace HubSpot.NET.Requests
         {
             return Client.GetAsync<Contact>(BaseUrl, cancellationToken);
         }
+
+        public Task<Contact> UpdateAsync(UpdateContactRequest updateRequest, CancellationToken cancellationToken = default)
+        {
+            return Client.PatchJsonAsync<Contact>(BaseUrl, updateRequest, cancellationToken);
+        }
     }
 }
