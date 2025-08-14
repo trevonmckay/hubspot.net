@@ -1,7 +1,9 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Text.Json.Serialization;
 
 namespace HubSpot.NET.Models
 {
+    [JsonConverter(typeof(EnumerationJsonConverter))]
     public readonly struct HubSpotFieldType : IEnumeration<string>
     {
         public static readonly HubSpotFieldType Textarea = new("textarea");
