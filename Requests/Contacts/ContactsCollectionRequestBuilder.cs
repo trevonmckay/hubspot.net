@@ -15,6 +15,20 @@
             }
         }
 
+        public async Task<CollectionResponse<Contact>> GetAsync(GetContactsParameters? parameters = null, CancellationToken cancellationToken = default)
+        {
+            string requestUrl = parameters is null ? BaseUrl : AddUrlParameters(BaseUrl, parameters);
+            return await Client.GetAsync<CollectionResponse<Contact>>(requestUrl, cancellationToken);
+        }
+
+        public Task<CollectionResponse<Contact>> GetAsync(Action<GetContactsParameters> parameterBuilder, CancellationToken cancellationToken = default)
+        {
+            GetContactsParameters parameters = new();
+            parameterBuilder?.Invoke(parameters);
+
+            return GetAsync(parameters, cancellationToken);
+        }
+
         public async Task<Contact> CreateAsync(CreateContactRequest createRequest, CancellationToken cancellationToken = default)
         {
             string requestUrl = BaseUrl;
