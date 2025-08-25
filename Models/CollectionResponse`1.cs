@@ -2,20 +2,20 @@
 {
     public class CollectionResponse<T>
     {
-        public IEnumerable<T> Results { get; internal set; } = Enumerable.Empty<T>();
+        public IEnumerable<T> Results { get; set; } = Enumerable.Empty<T>();
 
-        public PageObject? Paging { get; internal set; }
+        public PageObject? Paging { get; set; }
     }
 
     public class PageObject
     {
-        public PageDetails? Next { get; internal set; }
+        public PageDetails? Next { get; set; }
     }
 
     public class PageDetails
     {
-        public string? Link { get; internal set; }
+        public string? Link { get; set; }
 
-        public string? After { get; internal set; }
+        public string? After { get; set; }
     }
 }
