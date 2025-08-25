@@ -1,6 +1,7 @@
 ﻿using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace HubSpot.NET
 {
@@ -8,6 +9,7 @@ namespace HubSpot.NET
     {
         private static readonly JsonSerializerOptions _serializerOptions = new()
         {
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
         };
 

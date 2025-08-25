@@ -1,6 +1,11 @@
-﻿namespace HubSpot.NET
+﻿using HubSpot.NET.Models;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json.Serialization;
+
+namespace HubSpot.NET
 {
-    public readonly struct SearchFilterOperator
+    [JsonConverter(typeof(EnumerationJsonConverter))]
+    public readonly struct SearchFilterOperator : IEnumeration<string>
     {
         private readonly string _value;
 
@@ -30,9 +35,40 @@
 
         public static readonly SearchFilterOperator NotContainsToken = new("NOT_CONTAINS_TOKEN");
 
+        string IEnumeration<string>.Value => _value;
+
         private SearchFilterOperator(string value)
         {
             _value = value;
+        }
+
+        public bool Equals(string? other)
+        {
+            return _value is not null && _value.Equals(other);
+        }
+
+        public bool Equals(SearchFilterOperator other)
+        {
+            return Equals((object)other._value);
+        }
+
+        public override bool Equals([NotNullWhen(true)] object? obj)
+        {
+            if (obj is string value)
+            {
+                return Equals((object)value);
+            }
+            else if (obj is SearchFilterOperator other)
+            {
+                return Equals((object)other._value);
+            }
+
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return _value.GetHashCode();
         }
 
         public override string ToString()
