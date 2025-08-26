@@ -25,6 +25,8 @@ namespace HubSpot.NET
         public HubSpotClient(HubSpotClientOptions clientOptions, HttpMessageHandler? httpMessageHandler = null)
             : this(BuildHttpClient(clientOptions, httpMessageHandler), clientOptions) { }
 
+        public CompaniesCollectionRequestBuilder Companies => new("/crm/v3/objects/companies", _client);
+
         public ContactsCollectionRequestBuilder Contacts => new("/crm/v3/objects/contacts", _client);
 
         public PropertiesCollectionRequestBuilder Properties => new("/crm/v3/properties", _client);
