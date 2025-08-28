@@ -35,7 +35,7 @@
             return await Client.PostJsonAsync<Contact>(requestUrl, createRequest, cancellationToken);
         }
 
-        public async Task<SearchResult<Contact>> SearchAsync(SearchContactsRequest searchRequest, CancellationToken cancellationToken = default)
+        public async Task<SearchResult<Contact>> SearchAsync(SearchObjectsRequest searchRequest, CancellationToken cancellationToken = default)
         {
             string requestUrl = AppendUrlSegment("search");
             return await Client.PostJsonAsync<SearchResult<Contact>>(requestUrl, searchRequest, cancellationToken);

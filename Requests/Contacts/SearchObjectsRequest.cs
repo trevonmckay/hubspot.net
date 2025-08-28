@@ -1,6 +1,6 @@
 ﻿namespace HubSpot.NET
 {
-    public class SearchContactsRequest
+    public class SearchObjectsRequest
     {
         public string? Query { get; set; }
 

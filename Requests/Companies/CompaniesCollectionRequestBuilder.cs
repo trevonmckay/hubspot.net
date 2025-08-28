@@ -37,5 +37,11 @@ namespace HubSpot.NET.Requests
 
             return new CompanyRequestBuilder(requestUrl, Client);
         }
+
+        public async Task<SearchResult<Company>> SearchAsync(SearchObjectsRequest searchRequest, CancellationToken cancellationToken = default)
+        {
+            string requestUrl = AppendUrlSegment("search");
+            return await Client.PostJsonAsync<SearchResult<Company>>(requestUrl, searchRequest, cancellationToken);
+        }
     }
 }
