@@ -7,6 +7,8 @@ namespace HubSpot.NET.Requests
         public CompanyRequestBuilder(string baseUrl, BaseClient client)
             : base(baseUrl, client) { }
 
+        public ObjectAssociationsCollectionRequestBuilder Associations => new(AppendUrlSegment("associations"), Client);
+
         public async Task<Company> RetrieveAsync(RetrieveCompanyParameters? parameters = null, CancellationToken cancellationToken = default)
         {
             string requestUrl = parameters is null ? BaseUrl : AddUrlParameters(BaseUrl, parameters);
