@@ -1,10 +1,24 @@
-﻿namespace HubSpot.NET.Models
+﻿using System.Collections;
+using System.Text.Json.Serialization;
+
+namespace HubSpot.NET.Models
 {
-    public class CollectionResponse<T>
+    [JsonConverter(typeof(CollectionResponseJsonConverter))]
+    public class CollectionResponse<T> : IEnumerable<T>
     {
         public IEnumerable<T> Results { get; set; } = Enumerable.Empty<T>();
 
         public PageObject? Paging { get; set; }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            return Results.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable)Results).GetEnumerator();
+        }
     }
 
     public class PageObject
