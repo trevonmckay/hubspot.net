@@ -51,5 +51,14 @@
         ContactToListing = 883,
         ContactToService = 799,
         ContactToFeedbackSubmission = 97,
+        // Email-to-Object associations
+        EmailToContact = 198,
+        EmailToCompany = 186,
+        EmailToDeal = 210,
+        EmailToTicket = 224,
+        EmailToAppointment = 917,
+        EmailToCourse = 871,
+        EmailToListing = 895,
+        EmailToService = 843,
     }
 }

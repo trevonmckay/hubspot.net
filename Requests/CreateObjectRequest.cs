@@ -1,6 +1,6 @@
 ﻿namespace HubSpot.NET.Requests
 {
-    public abstract record CreateObjectRequest
+    public record CreateObjectRequest
     {
         public IEnumerable<PutAssociationRequest>? Associations { get; set; }
 

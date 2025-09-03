@@ -29,6 +29,8 @@ namespace HubSpot.NET
 
         public ContactsCollectionRequestBuilder Contacts => new("/crm/v3/objects/contacts", _client);
 
+        public EmailCollectionRequestBuilder Emails => new("/crm/v3/objects/emails", _client);
+
         public PropertiesCollectionRequestBuilder Properties => new("/crm/v3/properties", _client);
 
         public PipelineObjectsCollectionRequestBuilder Pipelines => new("/crm/v3/pipelines", _client);

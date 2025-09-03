@@ -2,7 +2,7 @@
 
 namespace HubSpot.NET.Models
 {
-    public abstract record Object
+    public abstract record CrmObject
     {
         [JsonInclude]
         public string? Id { get; internal set; }
