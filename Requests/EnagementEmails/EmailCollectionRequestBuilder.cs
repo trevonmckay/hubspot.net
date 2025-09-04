@@ -7,9 +7,9 @@ namespace HubSpot.NET.Requests
         public EmailCollectionRequestBuilder(string baseUrl, BaseClient client)
             : base(baseUrl, client) { }
 
-        public Task CreateAsync(CreateObjectRequest createRequest, CancellationToken cancellationToken = default)
+        public Task<CreatedResource> CreateAsync(CreateObjectRequest createRequest, CancellationToken cancellationToken = default)
         {
-            return Client.PostJsonAsync<CrmObject>(BaseUrl, createRequest, cancellationToken);
+            return Client.PostJsonAsync<CreatedResource>(BaseUrl, createRequest, cancellationToken);
         }
     }
 }

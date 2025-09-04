@@ -64,7 +64,7 @@ namespace HubSpot.NET
         public async Task PutAsync(string requestUrl, CancellationToken cancellationToken = default)
         {
             HttpRequestMessage request = new(HttpMethod.Put, requestUrl);
-            
+
             await SendAsync(request, cancellationToken);
         }
 
