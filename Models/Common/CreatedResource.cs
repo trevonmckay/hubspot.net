@@ -8,7 +8,7 @@ namespace HubSpot.NET.Models
         public string CreatedResourceId { get; internal set; } = null!;
 
         [JsonInclude]
-        public string? Location { get; set; }
+        public string? Location { get; internal set; }
 
         [JsonInclude]
         public CrmObject Entity { get; internal set; } = null!;
