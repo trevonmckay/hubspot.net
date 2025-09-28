@@ -2,16 +2,22 @@
 
 namespace HubSpot.NET.Models
 {
-    public abstract record CrmObject
+    public record CrmObject
     {
         [JsonInclude]
         public string? Id { get; internal set; }
+
+        [JsonInclude]
+        public string? ObjectWithTraceId { get; internal set; }
 
         [JsonInclude]
         public bool? Archived { get; internal set; }
 
         [JsonInclude]
         public IDictionary<string, object>? Properties { get; internal set; }
+
+        [JsonInclude]
+        public IDictionary<string, object>? PropertiesWithHistory { get; internal set; }
 
         [JsonInclude]
         public DateTimeOffset? CreatedAt { get; internal set; }

@@ -2,6 +2,7 @@
 {
     public enum AssociationTypeId
     {
+        // Company-to-Object associations
         CompanyToCompany = 450,
         ChildToParentCompany = 14,
         ParentToChildCompany = 13,
@@ -28,6 +29,7 @@
         CompanyToListing = 885,
         CompanyToService = 793,
         CompanyToFeedbackSubmission = 929,
+        // Contact-to-Object associations
         ContactToContact = 449,
         ContactToCompany = 279,
         ContactToCompanyPrimary = 1,
@@ -60,5 +62,17 @@
         EmailToCourse = 871,
         EmailToListing = 895,
         EmailToService = 843,
+        // Cart-to-Object associations
+        CartToContact = 586,
+        CartToLineItem = 590,
+        CartToOrder = 592,
+        CartToTask = 728,
+        // Order-to-Object associations
+        OrderToCart = 593,
+        OrderToContact = 507,
+        OrderToCompany = 509,
+        OrderToLineItem = 513,
+        OrderToPayment = 523,
+        OrderToTask = 726,
     }
 }

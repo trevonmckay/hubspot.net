@@ -35,6 +35,8 @@ namespace HubSpot.NET
 
         public PipelineObjectsCollectionRequestBuilder Pipelines => new("/crm/v3/pipelines", _client);
 
+        public ObjectsRequestBuilder Objects => new("/crm/v3/objects", _client);
+
         public VisitorIdentificationRequestBuilder VisitorIdentification => new("/visitor-identification/v3/tokens", _client);
 
         private static HttpClient BuildHttpClient(HubSpotClientOptions clientOptions, HttpMessageHandler? httpPipeline = null)

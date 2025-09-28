@@ -4,6 +4,6 @@
     {
         public IEnumerable<PutAssociationRequest>? Associations { get; set; }
 
-        public IDictionary<string, object>? Properties { get; set; }
+        public IDictionary<string, object?>? Properties { get; set; }
     }
 }

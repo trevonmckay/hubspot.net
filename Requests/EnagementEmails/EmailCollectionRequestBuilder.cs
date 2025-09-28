@@ -2,7 +2,7 @@
 
 namespace HubSpot.NET.Requests
 {
-    public class EmailCollectionRequestBuilder : ObjectCollectionRequestBuilder
+    public class EmailCollectionRequestBuilder : BaseRequestBuilder
     {
         public EmailCollectionRequestBuilder(string baseUrl, BaseClient client)
             : base(baseUrl, client) { }

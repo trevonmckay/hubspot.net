@@ -1,6 +1,6 @@
-﻿namespace HubSpot.NET.Models
+﻿namespace HubSpot.NET.Requests
 {
-    public class UpdateContactRequest
+    public class PatchObjectRequest
     {
         public required IDictionary<string, object?> Properties { get; set; }
     }
