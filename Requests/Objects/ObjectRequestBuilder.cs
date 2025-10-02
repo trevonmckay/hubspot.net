@@ -2,9 +2,9 @@
 
 namespace HubSpot.NET.Requests
 {
-    public class OrderRequestBuilder : BaseRequestBuilder
+    public class ObjectRequestBuilder : BaseRequestBuilder
     {
-        internal OrderRequestBuilder(string baseUrl, BaseClient client)
+        internal ObjectRequestBuilder(string baseUrl, BaseClient client)
             : base(baseUrl, client) { }
 
         public Task<CrmObject> ReadAsync(CancellationToken cancellationToken = default)

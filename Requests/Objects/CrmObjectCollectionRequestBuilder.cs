@@ -12,7 +12,7 @@ namespace HubSpot.NET.Requests
             return Client.GetAsync<CollectionResponse<CrmObject>>(BaseUrl, cancellationToken);
         }
 
-        public OrderRequestBuilder this[string orderId] => new(AppendUrlSegment(orderId), Client);
+        public ObjectRequestBuilder this[string orderId] => new(AppendUrlSegment(orderId), Client);
 
         public Task<CreatedResource> CreateAsync(CreateObjectRequest createRequest, CancellationToken cancellationToken = default)
         {
