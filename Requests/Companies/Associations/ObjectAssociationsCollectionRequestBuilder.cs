@@ -10,7 +10,7 @@ namespace HubSpot.NET.Requests
         public Task PutAsync(string toObjectType, string toObjectId, int assocationTypeId, CancellationToken cancellationToken = default)
         {
             var requestUrl = AppendUrlSegment(toObjectType, toObjectId, assocationTypeId.ToString());
-            return Client.PutAsync(requestUrl, cancellationToken);
+            return Client.PutJsonAsync<CrmObject>(requestUrl, new { associationCategory = AssociationCategory.HubSpotDefined, assocationTypeId }, cancellationToken);
         }
 
         public Task PutAsync(string toObjectType, string toObjectId, AssociationTypeId assocationTypeId, CancellationToken cancellationToken = default)
