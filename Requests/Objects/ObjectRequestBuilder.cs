@@ -7,6 +7,8 @@ namespace HubSpot.NET.Requests
         internal ObjectRequestBuilder(string baseUrl, BaseClient client)
             : base(baseUrl, client) { }
 
+        public ObjectAssociationsCollectionRequestBuilder Associations => new(AppendUrlSegment("associations").Replace("/v3", "/v4"), Client);
+
         public Task<CrmObject> ReadAsync(CancellationToken cancellationToken = default)
         {
             return Client.GetAsync<CrmObject>(BaseUrl, cancellationToken);
