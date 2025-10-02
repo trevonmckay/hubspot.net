@@ -9,7 +9,7 @@ namespace HubSpot.NET.Requests
 
         public Task PutAsync(string toObjectType, string toObjectId, AssociationCategory associationCategory, int assocationTypeId, CancellationToken cancellationToken = default)
         {
-            var requestUrl = AppendUrlSegment(toObjectType, toObjectId, assocationTypeId.ToString());
+            var requestUrl = AppendUrlSegment(toObjectType, toObjectId);
             return Client.PutJsonAsync<CrmObject>(requestUrl, new { associationCategory, assocationTypeId }, cancellationToken);
         }
 
@@ -28,15 +28,10 @@ namespace HubSpot.NET.Requests
             return PutAsync(toObjectType, toObjectId, AssociationCategory.HubSpotDefined, (int)assocationTypeId, cancellationToken);
         }
 
-        public Task DeleteAsync(string toObjectType, string toObjectId, int assocationTypeId, CancellationToken cancellationToken = default)
+        public Task DeleteAsync(string toObjectType, string toObjectId, CancellationToken cancellationToken = default)
         {
-            var requestUrl = AppendUrlSegment(toObjectType, toObjectId, assocationTypeId.ToString());
+            var requestUrl = AppendUrlSegment(toObjectType, toObjectId);
             return Client.DeleteAsync(requestUrl, cancellationToken);
-        }
-
-        public Task DeleteAsync(string toObjectType, string toObjectId, AssociationTypeId assocationTypeId, CancellationToken cancellationToken = default)
-        {
-            return DeleteAsync(toObjectType, toObjectId, (int)assocationTypeId, cancellationToken);
         }
     }
 }
